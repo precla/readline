@@ -136,13 +136,11 @@ func (r *RuneBuffer) Len() int {
 	return len(r.buf)
 }
 
+// ignore HOME key input
 func (r *RuneBuffer) MoveToLineStart() {
 	if r.idx == 0 {
 		return
 	}
-	r.idx = 0
-	
-	r.w.Write([]byte("\033[2K\r"))
 }
 
 func (r *RuneBuffer) MoveBackward() {
