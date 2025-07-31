@@ -137,12 +137,12 @@ func (r *RuneBuffer) Len() int {
 }
 
 func (r *RuneBuffer) MoveToLineStart() {
-	r.Refresh(func() {
-		if r.idx == 0 {
-			return
-		}
-		r.idx = 0
-	})
+	if r.idx == 0 {
+		return
+	}
+	r.idx = 0
+	
+	r.w.Write([]byte("\033[2K\r"))
 }
 
 func (r *RuneBuffer) MoveBackward() {
